@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,24 +39,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i<3;i++){
+        for (int i = 0; i<10;i++){
             builder.append(getString(R.string.lorem_ipsum) + "\n\n");
         }
 
         TextView tv = (TextView) findViewById(R.id.long_text);
         tv.setText(builder);
 
-        /*LinearLayout layout = (LinearLayout) findViewById(R.id.content_layout);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT );
+        ImageView iv = (ImageView) findViewById(R.id.photo);
+        //iv.setImageResource(R.drawable.jacket101);
 
-        for (int i=0; i<3; i++){
-            Button button = new Button(this);
-            button.setText("Click Me");
-            button.setLayoutParams(params);
-            layout.addView(button);
-        }*/
+        String imageName = "jacket101";
+        int res = getResources().getIdentifier(imageName,"drawable", getPackageName());
+        iv.setImageResource(res);
 
 
     }
