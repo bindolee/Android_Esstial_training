@@ -21,6 +21,7 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
 
     private CoordinatorLayout coordinatorLayout;
+    private static final int MENU_ITEM_LOGOUT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.add(0,MENU_ITEM_LOGOUT, 102, R.string.logout);
         return true;
     }
 
@@ -102,8 +104,20 @@ public class MainActivity extends AppCompatActivity {
                     .setAction("Action", null).show();
             return true;
         }
+        else if (id == R.id.action_about) {
+            Snackbar.make(coordinatorLayout, "You selected About menu", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return true;
+        }
+        else if (id == MENU_ITEM_LOGOUT) {
+            Snackbar.make(coordinatorLayout, "You selected logout", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return true;
+        }
+        else {
 
-        return super.onOptionsItemSelected(item);
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     /*public void buttonHandler(View view) {
