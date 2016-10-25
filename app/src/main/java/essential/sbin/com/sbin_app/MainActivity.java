@@ -19,6 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String PRODUCT_ID = "PRODUCT_ID";
     private CoordinatorLayout coordinatorLayout;
     private static final int MENU_ITEM_LOGOUT = 1000;
     private static String webUrl = "https://www.facebook.com/H-Sport-1388674971422183/";
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                Product product = products.get(position);
+                intent.putExtra(PRODUCT_ID, product.getProductId());
                 startActivity(intent);
             }
         });
