@@ -15,6 +15,13 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_web"
+        android:orderInCategory="102"
+        android:title="@string/on_the_web"
+        app:showAsAction="never" />
+
+
+    <item
         android:id="@+id/action_cart"
         android:orderInCategory="0"
         android:title="@string/shopcart"

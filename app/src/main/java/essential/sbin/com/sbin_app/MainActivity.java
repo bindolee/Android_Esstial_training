@@ -1,7 +1,9 @@
 package essential.sbin.com.sbin_app;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -11,9 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private CoordinatorLayout coordinatorLayout;
     private static final int MENU_ITEM_LOGOUT = 1000;
+    private static String webUrl = "https://www.facebook.com/H-Sport-1388674971422183/";
+    private static String email = "info@hplussport.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +37,19 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText et = (EditText) findViewById(R.id.editText2);
-                String entry = et.getText().toString();
+                String[] addresses = {email};
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:"));
+                intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "information request");
+                intent.putExtra(Intent.EXTRA_TEXT,"plz send some info");
+                if (intent.resolveActivity(getPackageManager()) != null){
+                    startActivity(intent);
+                }
 
-                Snackbar.make(view, "You entered: " + entry, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
             }
         });
-
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i<10;i++){
-            builder.append(getString(R.string.lorem_ipsum) + "\n\n");
-        }
-
-        TextView tv = (TextView) findViewById(R.id.long_text);
-        tv.setText(builder);
 
         ImageView iv = (ImageView) findViewById(R.id.photo);
         //iv.setImageResource(R.drawable.jacket101);
@@ -105,13 +105,22 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if (id == R.id.action_about) {
-            Snackbar.make(coordinatorLayout, "You selected About menu", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+/*            Snackbar.make(coordinatorLayout, "You selected About menu", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();*/
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
             return true;
         }
         else if (id == MENU_ITEM_LOGOUT) {
             Snackbar.make(coordinatorLayout, "You selected logout", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+            return true;
+        }
+        else if (id == R.id.action_web) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webUrl));
+            if (webIntent.resolveActivity(getPackageManager()) != null){
+                startActivity(webIntent);
+            }
             return true;
         }
         else if (id == R.id.action_cart) {
