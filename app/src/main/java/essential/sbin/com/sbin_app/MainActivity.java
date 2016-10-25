@@ -146,17 +146,18 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == DETAIL_REQUEST){
             if (resultCode == RESULT_OK){
                 String message = data.getStringExtra(RETURN_MESSAGE);
-                Snackbar.make(coordinatorLayout,message,Snackbar.LENGTH_LONG)
-                        .setAction("Go to shopping cart", new View.OnClickListener() {
+                Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG)
+                        .setAction("Go to cart", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Toast.makeText(MainActivity.this,
                                         "Going to cart", Toast.LENGTH_LONG).show();
                             }
-                        });
+                        }).show();
             }
         }
     }
+    
 
     /*public void buttonHandler(View view) {
         EditText et = (EditText) findViewById(R.id.editText2);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import java.io.InputStream;
 import java.text.NumberFormat;
 
 public class DetailActivity extends AppCompatActivity {
+
+    private String LOG_TAG ="DetailActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +51,10 @@ public class DetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i(LOG_TAG,"onClick from detailactivity");
                 Intent data = new Intent();
                 data.putExtra(MainActivity.RETURN_MESSAGE,
-                       product.getName() + " added to shopping cart");
+                        product.getName() + " added to shopping cart");
                 setResult(RESULT_OK, data);
                 finish();
             }
