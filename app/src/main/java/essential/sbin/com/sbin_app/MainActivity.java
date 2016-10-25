@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -58,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
         ProductListAdapter adapter =
                 new ProductListAdapter(this, R.layout.list_item, products);
         lv.setAdapter(adapter);
+
+        //PUt on click listener when user touches the list view item.
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
