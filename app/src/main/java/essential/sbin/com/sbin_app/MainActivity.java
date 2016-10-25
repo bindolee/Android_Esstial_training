@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private static String webUrl = "https://www.facebook.com/H-Sport-1388674971422183/";
     private static String email = "info@hplussport.com";
     private List<Product> products = DataProvider.productList;
+
+    private static final int DETAIL_REQUEST = 1111;
+    public static final String RETURN_MESSAGE = "RETURN_MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                 Product product = products.get(position);
                 intent.putExtra(PRODUCT_ID, product.getProductId());
-                startActivity(intent);
+                startActivityForResult(intent, DETAIL_REQUEST);
             }
         });
     }
@@ -134,6 +138,23 @@ public class MainActivity extends AppCompatActivity {
         else {
 
             return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == DETAIL_REQUEST){
+            if (resultCode == RESULT_OK){
+                String message = data.getStringExtra(RETURN_MESSAGE);
+                Snackbar.make(coordinatorLayout,message,Snackbar.LENGTH_LONG)
+                        .setAction("Go to shopping cart", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(MainActivity.this,
+                                        "Going to cart", Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
         }
     }
 

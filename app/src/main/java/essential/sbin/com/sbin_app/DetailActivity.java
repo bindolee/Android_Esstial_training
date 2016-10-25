@@ -1,11 +1,14 @@
 package essential.sbin.com.sbin_app;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +26,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         String productId = getIntent().getStringExtra(MainActivity.PRODUCT_ID);
-        Product product = (Product) DataProvider.productMap.get(productId);
+        final Product product = (Product) DataProvider.productMap.get(productId);
 
         TextView tv = (TextView) findViewById(R.id.nameText);
         tv.setText(product.getName());
@@ -41,6 +44,17 @@ public class DetailActivity extends AppCompatActivity {
         Bitmap bitMap = getBitmapFromAsset(product.getProductId());
         iv.setImageBitmap(bitMap);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent data = new Intent();
+                data.putExtra(MainActivity.RETURN_MESSAGE,
+                       product.getName() + " added to shopping cart");
+                setResult(RESULT_OK, data);
+                finish();
+            }
+        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
