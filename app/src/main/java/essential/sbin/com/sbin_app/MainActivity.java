@@ -12,8 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int MENU_ITEM_LOGOUT = 1000;
     private static String webUrl = "https://www.facebook.com/H-Sport-1388674971422183/";
     private static String email = "info@hplussport.com";
+    private List<Product> products = DataProvider.productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +50,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         String[] items = getResources().getStringArray(R.array.clothing);
-        ArrayAdapter<String> adapter =
+        /*ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(this,
                         android.R.layout.simple_list_item_1,
-                        android.R.id.text1, items);
+                        android.R.id.text1, items);*/
         ListView lv = (ListView) findViewById(R.id.listview);
+        ProductListAdapter adapter =
+                new ProductListAdapter(this, R.layout.list_item, products);
         lv.setAdapter(adapter);
     }
 
