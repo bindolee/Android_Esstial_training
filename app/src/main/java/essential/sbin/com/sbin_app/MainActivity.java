@@ -1,6 +1,7 @@
 package essential.sbin.com.sbin_app;
 
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,8 +54,17 @@ public class MainActivity extends AppCompatActivity {
         //iv.setImageResource(R.drawable.jacket101);
 
         String imageName = "jacket101";
-        int res = getResources().getIdentifier(imageName,"drawable", getPackageName());
-        iv.setImageResource(res);
+        /*int res = getResources().getIdentifier(imageName,"drawable", getPackageName());
+        iv.setImageResource(res);*/
+
+        try {
+            InputStream stream = getAssets().open(imageName+".png");
+            Drawable d = Drawable.createFromStream(stream,null);
+            iv.setImageDrawable(d);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
