@@ -1,5 +1,6 @@
 package essential.sbin.com.sbin_app;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -60,6 +61,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Snackbar.make(coordinatorLayout, "Landscape mode: ", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+        else{
+            Snackbar.make(coordinatorLayout, "Potrait mode: ", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -83,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void buttonHandler(View view) {
+    /*public void buttonHandler(View view) {
         EditText et = (EditText) findViewById(R.id.editText2);
         String name = et.getText().toString();
         Snackbar.make(coordinatorLayout, "Your name is "+ name, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-    }
+    }*/
 }
