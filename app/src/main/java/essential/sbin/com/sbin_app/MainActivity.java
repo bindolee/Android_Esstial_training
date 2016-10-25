@@ -114,6 +114,11 @@ public class MainActivity extends AppCompatActivity {
                     .setAction("Action", null).show();
             return true;
         }
+        else if (id == R.id.action_cart) {
+            Snackbar.make(coordinatorLayout, "You selected shopping cart", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return true;
+        }
         else {
 
             return super.onOptionsItemSelected(item);
