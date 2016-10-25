@@ -2,7 +2,6 @@ package essential.sbin.com.sbin_app;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -13,10 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-
-import java.io.IOException;
-import java.io.InputStream;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,24 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        ImageView iv = (ImageView) findViewById(R.id.photo);
-        //iv.setImageResource(R.drawable.jacket101);
-
-        String imageName = "jacket101";
-        /*int res = getResources().getIdentifier(imageName,"drawable", getPackageName());
-        iv.setImageResource(res);*/
-
-        try {
-            InputStream stream = getAssets().open(imageName+".png");
-            Drawable d = Drawable.createFromStream(stream,null);
-            iv.setImageDrawable(d);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        String[] items = getResources().getStringArray(R.array.clothing);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(this,
+                        android.R.layout.simple_list_item_1,
+                        android.R.id.text1, items);
+        ListView lv = (ListView) findViewById(R.id.listview);
+        lv.setAdapter(adapter);
     }
 
     @Override

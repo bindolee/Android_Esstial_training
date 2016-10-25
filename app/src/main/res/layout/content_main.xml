@@ -41,12 +41,14 @@
         android:layout_alignParentTop="true"
         android:text="Submit" />
 
-    <ImageView
-        android:id="@+id/photo"
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/submitButton"
-        android:layout_width="@dimen/logo_side"
-        android:layout_height="@dimen/logo_side"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentLeft="true"
+
+         />
 
 </RelativeLayout>
