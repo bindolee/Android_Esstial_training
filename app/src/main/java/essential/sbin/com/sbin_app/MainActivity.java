@@ -5,12 +5,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,12 +24,23 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                EditText et = (EditText) findViewById(R.id.editText2);
+                String entry = et.getText().toString();
+
+                Snackbar.make(view, "You entered: " + entry, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.content_layout);
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i<3;i++){
+            builder.append(getString(R.string.lorem_ipsum) + "\n\n");
+        }
+
+        TextView tv = (TextView) findViewById(R.id.long_text);
+        tv.setText(builder);
+
+        /*LinearLayout layout = (LinearLayout) findViewById(R.id.content_layout);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT );
@@ -40,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
             button.setText("Click Me");
             button.setLayoutParams(params);
             layout.addView(button);
-        }
+        }*/
+
+
     }
 
     @Override
