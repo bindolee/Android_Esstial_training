@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        String[] items = getResources().getStringArray(R.array.clothing);
-        /*ArrayAdapter<String> adapter =
+        /*String[] items = getResources().getStringArray(R.array.clothing);
+        ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(this,
                         android.R.layout.simple_list_item_1,
                         android.R.id.text1, items);*/
