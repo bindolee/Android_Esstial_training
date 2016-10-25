@@ -82,4 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void buttonHandler(View view) {
+        EditText et = (EditText) findViewById(R.id.editText2);
+        String name = et.getText().toString();
+        Snackbar.make(coordinatorLayout, "Your name is "+ name, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
 }
